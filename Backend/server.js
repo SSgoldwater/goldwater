@@ -73,4 +73,5 @@ backend.delete('/api/todos/:id', function(req, res) {
   });
 });
 
-backend.listen(80);
+const _port = process.env.PORT || '8080';
+backend.listen(_port);
