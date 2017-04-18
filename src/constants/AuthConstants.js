@@ -1,7 +1,5 @@
-import keyMirror from 'keyMirror';
-
-const AuthConstants = keyMirror({
-  SET_USER: null
-})
+const AuthConstants = {
+  SET_USER: 'SET_USER'
+}
 
 export default AuthConstants;

@@ -1,7 +1,6 @@
 build/bundle.js
 build/bundle.js.map
 node_modules
-src/configs/config.js
 npm-debug.log
 Cordova/platforms/
 Cordova/www/js/*

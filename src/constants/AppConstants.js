@@ -1,8 +1,6 @@
-import keyMirror from 'keyMirror';
-
-const AppConstants = keyMirror({
-  SET_PLATFORM: null,
-  SET_FB: null,
-})
+const AppConstants = {
+  SET_PLATFORM: 'SET_PLATFORM',
+  SET_FB: 'SET_FB'
+}
 
 export default AppConstants;

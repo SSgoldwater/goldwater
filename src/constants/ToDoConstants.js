@@ -1,9 +1,7 @@
-import keyMirror from 'keyMirror';
-
-const ToDoConstants = keyMirror({
-  CREATE_TODO: null,
-  UPDATE_TODO: null,
-  DELETE_TODO: null
-})
+const ToDoConstants = {
+  CREATE_TODO: 'CREATE_TODO',
+  UPDATE_TODO: 'UPDATE_TODO',
+  DELETE_TODO: 'DELETE_TODO'
+}
 
 export default ToDoConstants;
