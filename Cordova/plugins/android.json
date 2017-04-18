@@ -1,0 +1,20 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.freshwater.mobile"
+        },
+        "phonegap-facebook-plugin": {
+            "APP_ID": "239746973163692",
+            "APP_NAME": "Freshwater",
+            "PACKAGE_NAME": "com.freshwater.mobile"
+        }
+    },
+    "dependent_plugins": {}
+}
