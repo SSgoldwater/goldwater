@@ -4,3 +4,4 @@ node_modules
 npm-debug.log
 Cordova/platforms/
 Cordova/www/js/*
+src/config/config.js
