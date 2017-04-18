@@ -34,7 +34,7 @@
     "webpack-dev-middleware": "^1.10.1"
   },
   "scripts": {
-    "start": "npm i -g babel-cli && babel-node build/devserver.js",
+    "start": "node Backend/Server.js",
     "dev": "babel-node build/devserver.js",
     "backend": "node Backend/Server.js",
     "android": "./src/utils/buildCordova.sh && cd Cordova && cordova run android && cd ../"
