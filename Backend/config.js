@@ -1,3 +1,4 @@
 module.exports = {
-  database: "freshwater_dev"
+  database: process.env.NODE_ENV == "development" ? "freshwater_dev" : "prod",
+  port: '8080'
 }
