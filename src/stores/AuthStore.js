@@ -1,10 +1,9 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import { EventEmitter } from 'events';
 import AuthConstants from '../constants/AuthConstants';
+import BaseStore from './BaseStore';
 
-const CHANGE_EVENT = "change";
-
-class AuthStore extends EventEmitter {
+class AuthStore extends BaseStore {
   constructor(props) {
     super(props);
 
@@ -14,18 +13,6 @@ class AuthStore extends EventEmitter {
       name: "none",
       picUrl: ""
     }
-  }
-
-  emitChange = () => {
-    this.emit(CHANGE_EVENT);
-  }
-
-  addChangeListener = (callback) => {
-    this.on(CHANGE_EVENT, callback);
-  }
-
-  removeChangeListener = (callback) => {
-    this.removeListener(CHANGE_EVENT, callback);
   }
 
   getUser = () => {

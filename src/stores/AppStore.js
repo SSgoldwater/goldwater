@@ -1,29 +1,15 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import { EventEmitter } from 'events';
 import AppConstants from '../constants/AppConstants';
+import BaseStore from './BaseStore';
 
-const CHANGE_EVENT = "change";
-
-class AppStore extends EventEmitter {
+class AppStore extends BaseStore {
   constructor(props) {
     super(props);
 
     this._platform = null;
     this._fb = null;
   }
-
-  emitChange = () => {
-    this.emit(CHANGE_EVENT);
-  }
-
-  addChangeListener = (callback) => {
-    this.on(CHANGE_EVENT, callback);
-  }
-
-  removeChangeListener = (callback) => {
-    this.removeListener(CHANGE_EVENT, callback);
-  }
-
   getPlatform = () => {
     return this._platform;
   }
