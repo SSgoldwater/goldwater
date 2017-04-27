@@ -9,7 +9,6 @@ const ToDoActions = {
         text: data.text,
       })
       .then(function (response) {
-        console.log(response);
         AppDispatcher.dispatch({
           type: ToDoConstants.CREATE_TODO,
           data: Object.assign(data, response.data)
@@ -22,7 +21,6 @@ const ToDoActions = {
   updateToDo: (data) => {
     Axios.put(`${config.dbUrl}/api/todos/${data.id}`, data)
       .then(function (response) {
-        console.log(response);
         AppDispatcher.dispatch({
           type: ToDoConstants.UPDATE_TODO,
           data: data
@@ -32,14 +30,13 @@ const ToDoActions = {
         console.log(error);
       });
   },
-  deleteToDo: (id) => {
+  deleteToDo: (todo) => {
     return () => {
-    Axios.delete(`${config.dbUrl}/api/todos/${id}`)
+    Axios.delete(`${config.dbUrl}/api/todos/${todo.id}`)
     .then(function (response) {
-      console.log(response);
       AppDispatcher.dispatch({
         type: ToDoConstants.DELETE_TODO,
-        data: id
+        data: todo
       });
     })
     .catch(function (error) {

@@ -2,7 +2,7 @@ import React from 'react';
 import AppDispatcher from '../../dispatcher/AppDispatcher';
 import ToDoStore from '../../stores/ToDoStore.js';
 import CreateToDo from './CreateToDo';
-import ToDo from './ToDo';
+import ToDoItem from './ToDoItem';
 import styles from './styles/MainStyles';
 
 class Main extends React.Component {
@@ -27,7 +27,6 @@ class Main extends React.Component {
   }
 
   render() {
-    console.log(this.state.todos);
     const _todos = this.state.todos
       .sort((a, b) => {
         if (parseInt(a.id) < parseInt(b.id)) return 1;
@@ -35,7 +34,7 @@ class Main extends React.Component {
       })
       .map((todo, i) => {
         return (
-          <ToDo
+          <ToDoItem
             key={ todo.text }
             todo={ todo }
           />

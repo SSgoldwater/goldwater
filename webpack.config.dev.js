@@ -31,7 +31,12 @@ var config = {
     fs: "empty",
     tls: "empty",
     net: "empty"
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    })
+  ]
 };
 
 module.exports = config;

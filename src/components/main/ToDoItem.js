@@ -4,9 +4,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import ToDoStore from '../../stores/ToDoStore.js';
 import ToDoActions from '../../actions/ToDoActions';
+import ToDo from '../../models/ToDo';
 import styles from './styles/ToDoStyles';
 
-class ToDo extends React.Component {
+class ToDoItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -17,7 +18,7 @@ class ToDo extends React.Component {
     }
   }
 
-  _editOn = () => {
+  _editModeOn = () => {
     this.setState({ editing: true });
   }
 
@@ -47,7 +48,7 @@ class ToDo extends React.Component {
     const _editButton = (
       <RaisedButton
         label={ "Edit" }
-        onTouchTap={ this._editOn }
+        onTouchTap={ this._editModeOn }
       />
     );
 
@@ -58,7 +59,6 @@ class ToDo extends React.Component {
       />
     );
 
-    console.log(this.props.todo);
     return (
       <Paper
         style={ styles.todo }
@@ -77,7 +77,7 @@ class ToDo extends React.Component {
           }
           <RaisedButton
             label={ "Delete" }
-            onTouchTap={ ToDoActions.deleteToDo(this.state.todo.id) }
+            onTouchTap={ ToDoActions.deleteToDo(this.state.todo) }
           />
         </div>
       </Paper>
@@ -85,4 +85,4 @@ class ToDo extends React.Component {
   }
 }
 
-export default ToDo;
+export default ToDoItem;
