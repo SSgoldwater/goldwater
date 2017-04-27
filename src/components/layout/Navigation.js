@@ -129,7 +129,7 @@ class Navigation extends React.Component {
       <div>
         <AppBar
           style={ styles.appBar }
-          title="ToDo"
+          title="Goldwater"
           titleStyle={ styles.appBarTitle }
           onLeftIconButtonTouchTap={ this._toggleNav }
           iconElementRight={
