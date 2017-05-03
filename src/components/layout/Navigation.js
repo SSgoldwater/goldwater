@@ -1,16 +1,23 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Menu from 'material-ui/Menu';
 import Popover from 'material-ui/Popover';
 import FlatButton from 'material-ui/FlatButton';
 import Avatar from 'material-ui/Avatar';
-import { NavLink } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import TextField from 'material-ui/TextField';
+import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
+import { Link, NavLink } from 'react-router-dom';
 import AuthStore from '../../stores/AuthStore';
 import AuthActions from '../../actions/AuthActions';
 import AppStore from '../../stores/AppStore';
+import gwLogo from '../../assets/gw_glyph.png';
+import Tech from './navMenus/Tech';
+import TechTutorials from './navMenus/TechTutorials';
+import Health from './navMenus/Health';
+import HealthBlogs from './navMenus/HealthBlogs';
+import About from './navMenus/About';
+import UserMenu from './navMenus/UserMenu';
 import styles from './styles/NavigationStyles';
 
 class Navigation extends React.Component {
@@ -75,7 +82,7 @@ class Navigation extends React.Component {
     });
   }
 
-  _logout = () => {
+  logout = () => {
     this.setState({ userMenuOpen: false });
     this.state.fb.logout((res) => {
       AuthStore.setUser({
@@ -104,14 +111,66 @@ class Navigation extends React.Component {
     });
   }
 
+  _openNavMenu = (event) => {
+    event.preventDefault();
+
+    this.setState({ 
+      navMenuOpen: true,
+      currentNavMenu: event.currentTarget.id,
+      navMenuAnchor: event.currentTarget
+    });
+  }
+
+  openSubNavMenu = (event) => {
+    event.preventDefault();
+
+    this.setState({ 
+      subNavMenuOpen: true,
+      currentSubNavMenu: event.currentTarget.id,
+      subNavMenuAnchor: event.currentTarget
+    });
+  }
+
+  _setNavMenu = (event) => {
+    event.preventDefault();
+
+    if (this.state.navMenuOpen) {
+      this.setState({
+        currentNavMenu: event.target.innerText,
+        currentSubNavMenu: "none",
+        navMenuAnchor: event.currentTarget
+      });
+    }
+  }
+
+  setSubNavMenu = (event) => {
+    event.preventDefault();
+
+    if (this.state.navMenuOpen) {
+      this.setState({
+        currentSubNavMenu: event.target.innerText,
+        subNavMenuAnchor: event.currentTarget
+      });
+    }
+  }
+
   _closeUserMenu = () => {
     this.setState({ userMenuOpen: false });
+  }
+
+  closeNavMenus = () => {
+    this.setState({
+      navMenuOpen: false,
+      subNavMenuOpen: false
+    });
   }
 
   render() {
     const _loginButton = (
       <FlatButton
         label={ "Login" }
+        style={ styles.loginButton }
+        labelStyle={ styles.loginButtonLabel }
         containerElement={ <Link to={ "/login" }>Login</Link> }
       />
     )
@@ -120,51 +179,98 @@ class Navigation extends React.Component {
       <Avatar 
         src={ this.state.user.picUrl }
         style={ styles.avatar }
-        size={ 45 }
+        size={ 50 }
         onTouchTap={ this._openUserMenu }
       />
     )
 
     return (
       <div>
-        <AppBar
-          style={ styles.appBar }
-          title="Goldwater"
-          titleStyle={ styles.appBarTitle }
-          onLeftIconButtonTouchTap={ this._toggleNav }
-          iconElementRight={
-            this.state.user.picUrl ?
-            _userPicButton : _loginButton
-          }
-        />
-        <Popover
+        <Toolbar
+          style={ styles.toolBar }
+        >
+          <ToolbarGroup
+            style={ styles.nav }
+            firstChild={ true }
+          >
+            <img src={ gwLogo } style={ styles.logo } />
+            <FlatButton
+              id={ "Tech" }
+              label={ "Tech" }
+              style={ styles.navButton }
+              labelStyle={ styles.navButtonLabel }
+              hoverColor={ "rgba(0,0,0,.2)" }
+              onTouchTap={ this._openNavMenu }
+              onMouseEnter={ this._setNavMenu }
+            />
+            <ToolbarSeparator style={ styles.separator } />
+            <FlatButton
+              id={ "Health" }
+              label={ "Health" }
+              style={ styles.navButton }
+              labelStyle={ styles.navButtonLabel }
+              hoverColor={ "rgba(0,0,0,.2)" }
+              onTouchTap={ this._openNavMenu }
+              onMouseEnter={ this._setNavMenu }
+            />
+            <ToolbarSeparator style={ styles.separator } />
+            <FlatButton
+              id={ "About" }
+              label={ "About" }
+              style={ styles.navButton }
+              labelStyle={ styles.navButtonLabel }
+              hoverColor={ "rgba(0,0,0,.2)" }
+              onTouchTap={ this._openNavMenu }
+              onMouseEnter={ this._setNavMenu }
+            />
+          </ToolbarGroup>
+          <ToolbarGroup lastChild={ true }>
+            <TextField
+              hintText={ "Search" }
+              style={ styles.searchBox }
+              inputStyle={ styles.searchText }
+              hintStyle={ styles.searchHint }
+              underlineShow={ false }
+            />
+            { this.state.user.picUrl ?
+            _userPicButton : _loginButton }
+          </ToolbarGroup>
+        </Toolbar>
+        <UserMenu
+          style={ styles.menuStyle }
           open={ this.state.userMenuOpen }
           anchorEl={ this.state.userMenuAnchor }
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-          targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+          logout={ this.logout }
           onRequestClose={ this._closeUserMenu }
-        >
-          <Menu>
-            <MenuItem 
-              primaryText="Logout"
-              onTouchTap={ this._logout }
-            />
-            <MenuItem
-              primaryText="Settings"
-            />
-          </Menu>
-        </Popover>
-        <Drawer
-          open={ this.state.navOpen }
-          docked={ false }
-          onRequestChange={ this._closeNav }
-        >
-          <Menu onItemTouchTap={ this._closeNav }>
-            <MenuItem containerElement={ <NavLink to="/main"/> }>
-             ToDos
-            </MenuItem>
-          </Menu>
-        </Drawer>
+        />
+        <Tech
+          open={ this.state.navMenuOpen && this.state.currentNavMenu == "Tech" }
+          anchorEl={ this.state.navMenuAnchor }
+          onRequestClose={ this.closeNavMenus }
+          openSubMenu={ this.openSubNavMenu }
+        />
+        <TechTutorials
+          open={ this.state.subNavMenuOpen && this.state.currentSubNavMenu == "Tutorials" }
+          anchorEl={ this.state.subNavMenuAnchor }
+          closeNavMenus={ this.closeNavMenus }
+          onMouseEnter={ this.setSubNavMenu }
+        />
+        <Health
+          open={ this.state.navMenuOpen && this.state.currentNavMenu == "Health" || this.state.currentNavMenu == "Blogs" }
+          anchorEl={ this.state.navMenuAnchor }
+          onRequestClose={ this.closeNavMenus }
+          openSubMenu={ this.openSubNavMenu }
+        />
+        <HealthBlogs
+          open={ this.state.subNavMenuOpen && this.state.currentSubNavMenu == "Blogs" }
+          anchorEl={ this.state.subNavMenuAnchor }
+          onMouseEnter={ this.setSubNavMenu }
+        />
+        <About 
+          open={ this.state.navMenuOpen && this.state.currentNavMenu == "About" }
+          anchorEl={ this.state.navMenuAnchor }
+          onRequestClose={ this.closeNavMenus }
+        />
       </div>
     )
   }
