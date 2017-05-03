@@ -3,7 +3,7 @@ import AppDispatcher from '../../dispatcher/AppDispatcher';
 import ToDoStore from '../../stores/ToDoStore.js';
 import CreateToDo from './CreateToDo';
 import ToDoItem from './ToDoItem';
-import styles from './styles/MainStyles';
+import styles from './styles/SplashStyles';
 
 class Main extends React.Component {
   constructor(props) {

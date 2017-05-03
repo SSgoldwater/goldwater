@@ -1,11 +1,12 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import Navigation from './layout/Navigation';
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions';
 import config from '../configs/config';
+import rawGoldRound from '../assets/raw_gold_round.png';
 
 class App extends React.Component {
-
   componentWillMount = () => {
     if (window.cordova) {
       if (window.cordova.platformId == "browser") {
@@ -40,10 +41,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
-        <Navigation/>
-        {this.props.children}
-      </div>
+      <Redirect to="/welcome" />
     );
   }
 };
