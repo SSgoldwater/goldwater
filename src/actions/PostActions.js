@@ -1,16 +1,16 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import ToDoConstants from '../constants/ToDoConstants';
+import PostConstants from '../constants/PostConstants';
 import Axios from 'axios';
 import config from '../configs/config';
 
-const ToDoActions = {
-  createToDo: (data) => {
-    Axios.post(config.dbUrl + '/api/todos/add', {
+const PostActions = {
+  createPost: (data) => {
+    Axios.post(config.dbUrl + '/api/post/add', {
         text: data.text,
       })
       .then(function (response) {
         AppDispatcher.dispatch({
-          type: ToDoConstants.CREATE_TODO,
+          type: PostConstants.CREATE_TODO,
           data: Object.assign(data, response.data)
         });
       })
@@ -18,11 +18,11 @@ const ToDoActions = {
         console.log(error);
       });
   },
-  updateToDo: (data) => {
-    Axios.put(`${config.dbUrl}/api/todos/${data.id}`, data)
+  updatePost: (data) => {
+    Axios.put(`${config.dbUrl}/api/post/${data.id}`, data)
       .then(function (response) {
         AppDispatcher.dispatch({
-          type: ToDoConstants.UPDATE_TODO,
+          type: PostConstants.UPDATE_TODO,
           data: data
         });
       })
@@ -30,13 +30,13 @@ const ToDoActions = {
         console.log(error);
       });
   },
-  deleteToDo: (todo) => {
+  deletePost: (post) => {
     return () => {
-    Axios.delete(`${config.dbUrl}/api/todos/${todo.id}`)
+    Axios.delete(`${config.dbUrl}/api/post/${post.id}`)
     .then(function (response) {
       AppDispatcher.dispatch({
-        type: ToDoConstants.DELETE_TODO,
-        data: todo
+        type: PostConstants.DELETE_TODO,
+        data: post
       });
     })
     .catch(function (error) {
@@ -46,4 +46,4 @@ const ToDoActions = {
   }
 }
 
-export default ToDoActions;
+export default PostActions;

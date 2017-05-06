@@ -1,0 +1,92 @@
+import Axios from 'axios';
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import PostConstants from '../constants/PostConstants';
+import BaseStore from './BaseStore';
+import Post from '../models/Post';
+import config from '../configs/config';
+
+const CHANGE_EVENT = "change";
+
+class PostStore extends BaseStore {
+  constructor(props) {
+    super(props);
+
+    this.posts = [];
+
+    this._getPosts().then((res) => { 
+      this.posts = res;
+      this.emitChange();
+    });
+  }
+
+  _addPost = (props) => {
+    this.posts.push(new Post(props.id,
+                             props.uuid,
+                             props.userId,
+                             props.title,
+                             props.subtitle,
+                             props.body,
+                             props.createdAt,
+                             props.updatedAt));
+  }
+
+  _updatePost = (newPost) => {
+    this.posts = this.posts.map((post) => {
+      if (post.id == newPost.id) {
+        post.text = newPost.text
+        return post
+      } else { return post }
+    })
+  }
+
+  _deletePost = (post) => {
+    this.posts = this.posts.filter((_post) => {
+      return post.id != _post.id;
+    })
+  }
+
+  _getPosts = () => {
+    return new Promise((resolve, reject) => {
+      Axios.get(`${config.dbUrl}/api/posts`)
+        .then((response) => {
+          const _posts = response.data.posts.map((post) => {
+            return new Post(post.id,
+                            post.uuid,
+                            post.userId,
+                            post.title,
+                            post.subtitle,
+                            post.body,
+                            post.createdAt,
+                            post.updatedAt);
+          })
+
+          resolve(_posts);
+        });
+    });
+  }
+
+  getPosts = () => {
+    return this.posts;
+  }
+}
+
+const _PostStore = new PostStore();
+
+_PostStore.dispatchToken = AppDispatcher.register((payload) => {
+  switch (payload.type) {
+    case PostConstants.CREATE_TODO:
+      _PostStore._addPost(payload.data);
+      _PostStore.emitChange();
+      break;
+    case PostConstants.UPDATE_TODO:
+      _PostStore._updatePost(payload.data);
+      _PostStore.emitChange();
+      break;
+    case PostConstants.DELETE_TODO:
+      _PostStore._deletePost(payload.data);
+      _PostStore.emitChange();
+    default:
+  }
+})
+
+export default _PostStore;
