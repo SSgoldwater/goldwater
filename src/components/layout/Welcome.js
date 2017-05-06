@@ -1,13 +1,10 @@
 import React from 'react';
-import Navigation from './Navigation';
 import styles from './styles/WelcomeStyles';
 
 class Welcome extends React.Component {
-  
   render() {
     return (
       <div style={ styles.container }>
-        <Navigation />
         <h1 style={ styles.welcome }>
           Welcome
         </h1>

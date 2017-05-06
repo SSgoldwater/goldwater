@@ -4,7 +4,6 @@ import Navigation from './layout/Navigation';
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions';
 import config from '../configs/config';
-import rawGoldRound from '../assets/raw_gold_round.png';
 
 class App extends React.Component {
   componentWillMount = () => {

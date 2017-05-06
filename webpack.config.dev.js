@@ -9,7 +9,8 @@ var config = {
   devtool: 'eval',
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module : {
     loaders : [
