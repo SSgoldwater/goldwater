@@ -9,12 +9,12 @@ client.connect(function(err) {
 });
 
 module.exports = function(backend) {
-  backend.get('/api/todos', function(req, res) {
-    client.query("SELECT * FROM todos", function(err, result) {
+  backend.get('/api/posts', function(req, res) {
+    client.query("SELECT * FROM posts", function(err, result) {
       if (err) {
         throw err;
       } else {
-        res.json({ todos: result.rows });
+        res.json({ posts: result.rows });
       }
     });
   });
