@@ -20,14 +20,7 @@ class PostStore extends BaseStore {
   }
 
   _addPost = (props) => {
-    this.posts.push(new Post(props.id,
-                             props.uuid,
-                             props.userId,
-                             props.title,
-                             props.subtitle,
-                             props.body,
-                             props.createdAt,
-                             props.updatedAt));
+    this.posts.push(new Post(props));
   }
 
   _updatePost = (newPost) => {
@@ -50,14 +43,7 @@ class PostStore extends BaseStore {
       Axios.get(`${config.dbUrl}/api/posts`)
         .then((response) => {
           const _posts = response.data.posts.map((post) => {
-            return new Post(post.id,
-                            post.uuid,
-                            post.userId,
-                            post.title,
-                            post.subtitle,
-                            post.body,
-                            post.createdAt,
-                            post.updatedAt);
+            return new Post(post);
           })
 
           resolve(_posts);
@@ -67,6 +53,12 @@ class PostStore extends BaseStore {
 
   getPosts = () => {
     return this.posts;
+  }
+
+  getPostByUuid = (uuid) => {
+    return this.posts.find((post) => {
+      return post.uuid == uuid;
+    });
   }
 }
 

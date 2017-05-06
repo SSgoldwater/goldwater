@@ -11,7 +11,6 @@ class PostList extends React.Component {
     super(props)
 
     this.state = {
-      filter: this.props.match,
       posts: PostStore.getPosts()
     }
   }
@@ -43,7 +42,7 @@ class PostList extends React.Component {
       <div style={ styles.container }>
         <Paper style={ styles.page }>
           <BreadCrumbs
-            match={ [this.state.filter] }
+            match={ [this.props.match] }
           />
           { _posts }
         </Paper>
