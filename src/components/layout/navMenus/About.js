@@ -2,6 +2,7 @@ import React from 'react';
 import Popover from 'material-ui/Popover';
 import MenuItem from 'material-ui/MenuItem';
 import Menu from 'material-ui/Menu';
+import { NavLink } from 'react-router-dom';
 import styles from '../styles/NavigationStyles';
 
 class About extends React.Component {
@@ -21,9 +22,11 @@ class About extends React.Component {
         >
           <MenuItem 
             primaryText="Resume"
+            containerElement={ <NavLink to={ "/resume" }/> }
           />
           <MenuItem
             primaryText="Stanley"
+            containerElement={ <NavLink to={ "/stanley" }/> }
           />
         </Menu>
       </Popover>

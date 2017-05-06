@@ -2,6 +2,7 @@ import React from 'react';
 import Popover from 'material-ui/Popover';
 import MenuItem from 'material-ui/MenuItem';
 import Menu from 'material-ui/Menu';
+import { NavLink } from 'react-router-dom';
 import styles from '../styles/NavigationStyles';
 
 class Tech extends React.Component {
@@ -22,10 +23,12 @@ class Tech extends React.Component {
           <MenuItem 
             primaryText={ "Tutorials" }
             id={ "Tutorials" }
+            containerElement={ <NavLink to={ "/posts/tech_tutorials" }/> }
             onMouseEnter={ this.props.openSubMenu }
           />
           <MenuItem
             primaryText={ "Blogs" }
+            containerElement={ <NavLink to={ "/posts/tech_blogs" }/> }
             onMouseEnter={ this.props.openSubMenu }
           />
         </Menu>
