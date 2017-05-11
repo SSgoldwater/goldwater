@@ -17,10 +17,17 @@ class PostList extends React.Component {
 
   componentDidMount() {
     PostStore.addChangeListener(this._onChange);
+    this._onChange();
   }
 
   componentWillUnmount() {
     PostStore.removeChangeListener(this._onChange);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps) {
+      this._onChange();
+    }
   }
 
   _onChange = () => {
@@ -28,7 +35,6 @@ class PostList extends React.Component {
   }
 
   render() {
-    console.log(this.state.posts);
     const _posts = this.state.posts.map((post, i) => {
       return (
         <PostListItem

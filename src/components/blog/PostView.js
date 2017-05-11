@@ -15,10 +15,17 @@ class PostView extends React.Component {
 
   componentDidMount() {
     PostStore.addChangeListener(this._onChange);
+    this._onChange();
   }
 
   componentWillUnmount() {
     PostStore.removeChangeListener(this._onChange);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps) {
+      this._onChange();
+    }
   }
 
   _onChange = () => {
@@ -42,7 +49,7 @@ class PostView extends React.Component {
             <h1>{ _post.title }</h1>
             <h3>{ _post.subtitle }</h3>
             <ReactMarkdown source={ _post.body } />
-            <p>{ `Written by Stanley(link) at ${ _post.created_at }` }</p>
+            <p>{ `Written by ${ _post.user.name } at ${ _post.created_at }` }</p>
           </Paper>
         </div>
       )

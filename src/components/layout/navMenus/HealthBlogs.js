@@ -2,6 +2,7 @@ import React from 'react';
 import Popover from 'material-ui/Popover';
 import MenuItem from 'material-ui/MenuItem';
 import Menu from 'material-ui/Menu';
+import { NavLink } from 'react-router-dom';
 import styles from '../styles/NavigationStyles';
 
 class HealthBlogs extends React.Component {
@@ -20,13 +21,18 @@ class HealthBlogs extends React.Component {
         >
           <MenuItem 
             primaryText="Food"
-      
+            containerElement={ <NavLink to={ "/posts/health_blogs_food" }/> }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText="Fitness"
+            containerElement={ <NavLink to={ "/posts/health_blogs_food" }/> }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText="Lifestyle"
+            containerElement={ <NavLink to={ "/posts/health_blogs_lifestyle" }/> }
+            onTouchTap={ this.props.closeNav }
           />
         </Menu>
       </Popover>
