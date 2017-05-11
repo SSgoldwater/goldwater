@@ -25,11 +25,13 @@ class Tech extends React.Component {
             id={ "Tutorials" }
             containerElement={ <NavLink to={ "/posts/tech_tutorials" }/> }
             onMouseEnter={ this.props.openSubMenu }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText={ "Blogs" }
             containerElement={ <NavLink to={ "/posts/tech_blogs" }/> }
             onMouseEnter={ this.props.openSubMenu }
+            onTouchTap={ this.props.closeNav }
           />
         </Menu>
       </Popover>

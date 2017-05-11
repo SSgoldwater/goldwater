@@ -22,14 +22,17 @@ class HealthBlogs extends React.Component {
           <MenuItem 
             primaryText="Food"
             containerElement={ <NavLink to={ "/posts/health_blogs_food" }/> }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText="Fitness"
             containerElement={ <NavLink to={ "/posts/health_blogs_food" }/> }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText="Lifestyle"
             containerElement={ <NavLink to={ "/posts/health_blogs_lifestyle" }/> }
+            onTouchTap={ this.props.closeNav }
           />
         </Menu>
       </Popover>

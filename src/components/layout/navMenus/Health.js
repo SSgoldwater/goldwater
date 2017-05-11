@@ -25,16 +25,19 @@ class Health extends React.Component {
             id={ "Blogs" }
             containerElement={ <NavLink to={ "/posts/health_blogs" }/> }
             onMouseEnter={ this.props.openSubMenu }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText="News/Studies"
             containerElement={ <NavLink to={ "/posts/health_news" }/> }
             onMouseEnter={ this.props.openSubMenu }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText="Product Reviews"
             containerElement={ <NavLink to={ "/posts/health_reviews" }/> }
             onMouseEnter={ this.props.openSubMenu }
+            onTouchTap={ this.props.closeNav }
           />
         </Menu>
       </Popover>

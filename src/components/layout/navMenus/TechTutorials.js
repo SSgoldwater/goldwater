@@ -22,14 +22,17 @@ class TechTutorials extends React.Component {
           <MenuItem 
             primaryText="Command Line"
             containerElement={ <NavLink to={ "/posts/cmdline_tutorials" }/> }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText="Node"
             containerElement={ <NavLink to={ "/posts/node_tutorials" }/> }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText="React"
             containerElement={ <NavLink to={ "/posts/react_tutorials" }/> }
+            onTouchTap={ this.props.closeNav }
           />
         </Menu>
       </Popover>

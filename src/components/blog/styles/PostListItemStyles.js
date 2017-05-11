@@ -10,7 +10,5 @@ export default {
   writtenBy: {
     width: "30%",
     display: "inline-block"
-  },
-  subtitle: {
   }
 }

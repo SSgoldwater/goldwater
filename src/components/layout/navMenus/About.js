@@ -23,10 +23,12 @@ class About extends React.Component {
           <MenuItem 
             primaryText="Resume"
             containerElement={ <NavLink to={ "/resume" }/> }
+            onTouchTap={ this.props.closeNav }
           />
           <MenuItem
             primaryText="Stanley"
             containerElement={ <NavLink to={ "/stanley" }/> }
+            onTouchTap={ this.props.closeNav }
           />
         </Menu>
       </Popover>

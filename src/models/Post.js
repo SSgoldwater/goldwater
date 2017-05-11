@@ -8,5 +8,6 @@ export default class Post {
     this.body = props.body;
     this.created_at = props.created_at;
     this.updated_at = props.updated_at;
+    this.user = { name: "Stanley" };
   }
 };

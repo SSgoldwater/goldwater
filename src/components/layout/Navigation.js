@@ -94,14 +94,6 @@ class Navigation extends React.Component {
     });
   }
 
-  _toggleNav = () => {
-    this.setState({ navOpen: !this.state.navOpen });
-  }
-
-  _closeNav = () => {
-    this.setState({ navOpen: false });
-  }
-
   _openUserMenu = (event) => {
     event.preventDefault();
 
@@ -193,7 +185,12 @@ class Navigation extends React.Component {
             style={ styles.nav }
             firstChild={ true }
           >
-            <img src={ gwLogo } style={ styles.logo } />
+            <NavLink to={ '/welcome' }>
+              <img
+                src={ gwLogo }
+                style={ styles.logo }
+              />
+            </NavLink>
             <FlatButton
               id={ "Tech" }
               label={ "Tech" }
@@ -248,28 +245,33 @@ class Navigation extends React.Component {
           anchorEl={ this.state.navMenuAnchor }
           onRequestClose={ this.closeNavMenus }
           openSubMenu={ this.openSubNavMenu }
+          closeNav={ this.closeNavMenus }
         />
         <TechTutorials
           open={ this.state.subNavMenuOpen && this.state.currentSubNavMenu == "Tutorials" }
           anchorEl={ this.state.subNavMenuAnchor }
           closeNavMenus={ this.closeNavMenus }
           onMouseEnter={ this.setSubNavMenu }
+          closeNav={ this.closeNavMenus }
         />
         <Health
           open={ this.state.navMenuOpen && this.state.currentNavMenu == "Health" || this.state.currentNavMenu == "Blogs" }
           anchorEl={ this.state.navMenuAnchor }
           onRequestClose={ this.closeNavMenus }
           openSubMenu={ this.openSubNavMenu }
+          closeNav={ this.closeNavMenus }
         />
         <HealthBlogs
           open={ this.state.subNavMenuOpen && this.state.currentSubNavMenu == "Blogs" }
           anchorEl={ this.state.subNavMenuAnchor }
           onMouseEnter={ this.setSubNavMenu }
+          closeNav={ this.closeNavMenus }
         />
         <About 
           open={ this.state.navMenuOpen && this.state.currentNavMenu == "About" }
           anchorEl={ this.state.navMenuAnchor }
           onRequestClose={ this.closeNavMenus }
+          closeNav={ this.closeNavMenus }
         />
       </div>
     )
