@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation initializes with proper state 1`] = `
+Object {
+  "fb": null,
+  "navOpen": false,
+  "user": Object {
+    "id": "",
+    "name": "none",
+    "picUrl": "",
+    "token": "",
+  },
+}
+`;
+
+exports[`Navigation initializes with proper state 2`] = `
+Object {
+  "fb": null,
+  "navOpen": false,
+  "user": Object {
+    "id": "",
+    "name": "none",
+    "picUrl": "",
+    "token": "",
+  },
+  "userMenuAnchor": "hello",
+  "userMenuOpen": true,
+}
+`;
