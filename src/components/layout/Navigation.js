@@ -6,7 +6,9 @@ import Popover from 'material-ui/Popover';
 import FlatButton from 'material-ui/FlatButton';
 import Avatar from 'material-ui/Avatar';
 import TextField from 'material-ui/TextField';
-import { Toolbar, ToolbarGroup, ToolbarSeparator } from 'material-ui/Toolbar';
+import { Toolbar,
+         ToolbarGroup,
+         ToolbarSeparator } from 'material-ui/Toolbar';
 import { Link, NavLink } from 'react-router-dom';
 import AuthStore from '../../stores/AuthStore';
 import AuthActions from '../../actions/AuthActions';
